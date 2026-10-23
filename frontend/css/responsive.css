@@ -1,0 +1,10 @@
+@media (max-width: 768px) {
+  .page-container, .staff-content { padding: 16px; }
+  .hero { margin-top: 16px; padding: 28px 20px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .patient-navbar { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .patient-navbar nav { flex-wrap: wrap; gap: 12px; }
+  .staff-sidebar { min-height: auto; position: static; width: 100%; }
+  .staff-sidebar nav { display: flex; flex-wrap: wrap; margin-top: 16px; }
+  .staff-content { margin-left: 0; }
+}
