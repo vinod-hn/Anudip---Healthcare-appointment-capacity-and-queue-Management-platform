@@ -20,3 +20,14 @@ Open `frontend/index.html` with VS Code Live Server, or open it directly in a br
 `window.HealthcareState.data` is the single in-browser state object. Use the existing doctor, slot, appointment, and status field names in `frontend/js/mock-data.js`. Appointment statuses are `confirmed`, `checked_in`, `waiting`, `called`, `in_consultation`, `completed`, `cancelled`, and `skipped`.
 
 This is a demo, not a production hospital system. It contains no backend, database, authentication, security, compliance, or real patient information.
+
+## Vinod admin work
+
+Vinod's implementation is on the `feature/admin-ui` branch and covers:
+
+- Dashboard KPI cards, appointment status summary, and department capacity derived from shared state.
+- Appointment search by patient or ID, date/status filters, details dialog, cancellation, and rescheduling.
+- Doctor search, add/edit form, and active/inactive status changes.
+- `localStorage` persistence so the demo workflow can move between pages in the same browser.
+
+See [`docs/vinod-work.md`](docs/vinod-work.md) for the step-by-step implementation record and validation checklist.
