@@ -1,3 +1,19 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Admin Dashboard | Healthcare+</title><link rel="stylesheet" href="../../css/global.css"><link rel="stylesheet" href="../../css/components.css"><link rel="stylesheet" href="../../css/admin.css"><link rel="stylesheet" href="../../css/responsive.css"></head>
-<body data-shell="staff" data-page="dashboard"><div data-staff-layout></div><main class="staff-content"><section class="card"><p class="eyebrow">Staff workspace</p><h1>Admin dashboard</h1><p class="empty-state">KPI cards and capacity summaries will read from the shared sample state.</p></section></main><script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/admin.js" defer></script></body></html>
+<body data-shell="staff" data-page="dashboard">
+  <div data-staff-layout></div>
+  <main class="staff-content">
+    <div class="page-heading"><div><p class="eyebrow">Staff workspace</p><h1>Admin dashboard</h1><p>Monitor today's appointment and department capacity.</p></div><button class="btn btn-secondary" data-reset-demo type="button">Reset demo data</button></div>
+    <section class="kpi-grid" aria-label="Dashboard summary">
+      <article class="card kpi-card"><span>Total appointments</span><strong data-kpi="total">0</strong></article>
+      <article class="card kpi-card"><span>Confirmed</span><strong data-kpi="confirmed">0</strong></article>
+      <article class="card kpi-card"><span>Checked in</span><strong data-kpi="checked-in">0</strong></article>
+      <article class="card kpi-card"><span>Completed</span><strong data-kpi="completed">0</strong></article>
+    </section>
+    <section class="admin-grid">
+      <article class="card"><h2>Appointment summary</h2><div class="summary-list" data-appointment-summary></div></article>
+      <article class="card"><h2>Department capacity</h2><div class="capacity-list" data-capacity-summary></div></article>
+    </section>
+  </main>
+  <script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/admin.js" defer></script>
+</body></html>
