@@ -1,2 +1,103 @@
 .hero { background: linear-gradient(135deg, #fff, #e8f6f7); }
 .hero h1 { max-width: 600px; }
+
+.sr-only {
+  border: 0; clip: rect(0, 0, 0, 0); height: 1px; margin: -1px;
+  overflow: hidden; padding: 0; position: absolute; white-space: nowrap; width: 1px;
+}
+
+/* ---------- Screen 1: Home ---------- */
+.search-bar { display: flex; gap: 12px; margin-top: 24px; max-width: 720px; }
+.search-bar .input { flex: 1; }
+
+.section-block { margin-top: 32px; }
+.section-block h2 { margin: 0; }
+.section-head { align-items: baseline; display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: space-between; }
+.results-count { color: var(--muted); margin: 0; }
+
+.dept-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-top: 16px; }
+.dept-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  box-shadow: var(--shadow); color: var(--text); padding: 16px 20px; text-align: left;
+}
+.dept-card:hover { border-color: var(--teal); }
+.dept-card strong { color: var(--navy); display: block; font-size: 16px; }
+.dept-card span { color: var(--muted); font-size: 13px; }
+.dept-card[aria-pressed="true"] { background: #e6f6f4; border-color: var(--teal); box-shadow: inset 0 0 0 1px var(--teal); }
+
+.doctor-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); margin-top: 16px; }
+.doctor-card { display: flex; flex-direction: column; gap: 12px; }
+.doctor-card-head { align-items: center; display: flex; gap: 12px; }
+.doctor-avatar {
+  align-items: center; background: var(--primary); border-radius: 50%; color: #fff; display: flex;
+  flex: 0 0 48px; font-weight: 700; height: 48px; justify-content: center; width: 48px;
+}
+.doctor-card h3 { font-size: 18px; margin: 0; }
+.doctor-department { color: var(--teal); font-size: 13px; font-weight: 600; margin: 0; }
+.doctor-meta { color: var(--muted); display: flex; flex-wrap: wrap; font-size: 14px; gap: 4px 16px; list-style: none; margin: 0; padding: 0; }
+.doctor-card .btn { margin-top: auto; text-align: center; }
+.doctor-grid .empty-state { grid-column: 1 / -1; }
+.doctor-grid .empty-state p { margin: 0 0 12px; }
+
+/* ---------- Screens 2-4 ---------- */
+.back-link { display: inline-block; margin: 8px 0 12px; text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+#doctor-view > .card, #booking-view > .card { margin-top: 16px; }
+.page-container h2 { font-size: 18px; margin: 0 0 12px; }
+
+.doctor-profile { align-items: center; display: flex; gap: 16px; }
+.doctor-profile .doctor-avatar { flex-basis: 64px; font-size: 20px; height: 64px; width: 64px; }
+.doctor-profile h1 { margin: 0 0 4px; }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.chip { background: #fff; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-weight: 600; min-height: 44px; padding: 8px 14px; }
+.chip:hover { border-color: var(--teal); }
+.chip[aria-pressed="true"] { background: var(--teal); border-color: var(--teal); color: #fff; }
+
+.slot-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+.slot { background: #fff; border: 1px solid var(--border); border-radius: 8px; color: var(--text); display: grid; gap: 2px; min-height: 60px; padding: 8px; text-align: center; }
+.slot strong { color: var(--navy); font-size: 16px; }
+.slot span { color: var(--success); font-size: 12px; font-weight: 700; }
+.slot:hover:not(:disabled) { border-color: var(--primary); }
+.slot[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); }
+.slot[aria-pressed="true"] strong, .slot[aria-pressed="true"] span { color: #fff; }
+.slot-full { background: #fef2f2; }
+.slot-full span { color: var(--danger); }
+.slot-blocked { background: #f1f5f9; }
+.slot-blocked span { color: var(--muted); }
+.slot-note { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+.slot-actions { align-items: center; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 12px 16px; justify-content: space-between; margin-top: 20px; padding-top: 16px; }
+.slot-actions p { margin: 0; }
+
+.booking-layout { align-items: start; display: grid; gap: 20px; grid-template-columns: 1.4fr 1fr; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-weight: 600; margin-bottom: 6px; }
+.input.invalid { border-color: var(--danger); }
+.field-error, .form-error { color: var(--danger); font-size: 13px; margin: 4px 0 0; min-height: 18px; }
+.form-error { margin-bottom: 12px; }
+.booking-layout .btn { width: 100%; }
+
+.summary-list { margin: 0; }
+.summary-list div { border-bottom: 1px solid var(--border); display: flex; gap: 12px; justify-content: space-between; padding: 10px 0; }
+.summary-list div:last-child { border-bottom: 0; }
+.summary-list dt { color: var(--muted); }
+.summary-list dd { font-weight: 600; margin: 0; text-align: right; }
+
+.confirm-card { margin: 16px auto 0; max-width: 640px; text-align: center; }
+.confirm-icon { align-items: center; background: #dcfce7; border-radius: 50%; color: var(--success); display: inline-flex; font-size: 28px; font-weight: 700; height: 56px; justify-content: center; width: 56px; }
+.appt-id { background: var(--background); border: 1px dashed var(--teal); border-radius: 8px; color: var(--navy); font-size: 22px; font-weight: 800; letter-spacing: .04em; margin: 16px 0; padding: 12px; }
+.confirm-card .summary-list { text-align: left; }
+.next-steps { background: #e6f6f4; border-radius: 8px; margin: 20px 0; padding: 14px 16px; text-align: left; }
+.next-steps p { margin: 0; }
+.confirm-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 768px) {
+  .hero { margin-top: 16px; padding: 28px 20px; }
+  .page-container { padding: 16px; }
+  .search-bar { flex-direction: column; }
+  .search-bar .btn { width: 100%; }
+  .booking-layout { grid-template-columns: 1fr; }
+  .doctor-profile { align-items: flex-start; }
+  .slot-actions .btn { width: 100%; }
+}
