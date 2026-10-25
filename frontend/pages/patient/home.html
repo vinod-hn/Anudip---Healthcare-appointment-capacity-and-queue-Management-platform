@@ -1,39 +1,48 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Find a Doctor | Healthcare+</title>
-    <link rel="stylesheet" href="../../css/global.css" />
-    <link rel="stylesheet" href="../../css/components.css" />
-    <link rel="stylesheet" href="../../css/patient.css" />
-    <link rel="stylesheet" href="../../css/responsive.css" />
-  </head>
-  <body data-shell="patient" data-page="patient-home">
-    <header data-site-header></header>
-    <main class="page-container">
-      <section class="hero">
-        <p class="eyebrow">Patient portal</p>
-        <h1>Find the right care for you.</h1>
-        <p>
-          Search fictional doctors and departments to explore the booking demo.
-        </p>
-      </section>
-      <section class="card">
-        <label for="doctor-search">Search doctors or departments</label
-        ><input
-          id="doctor-search"
-          class="input"
-          type="search"
-          placeholder="Try “medicine” or “Rao”"
-        />
-        <div id="doctor-results" class="card-grid" aria-live="polite"></div>
-      </section>
-    </main>
-    <script src="../../js/mock-data.js" defer></script>
-    <script src="../../js/shared-state.js" defer></script>
-    <script src="../../js/utils.js" defer></script>
-    <script src="../../js/main.js" defer></script>
-    <script src="../../js/patient.js" defer></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a Doctor | Healthcare+</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/patient.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-shell="patient" data-page="patient-home">
+  <header data-site-header></header>
+
+  <main class="page-container">
+    <section class="hero">
+      <p class="eyebrow">Patient portal</p>
+      <h1>Find the right care for you.</h1>
+      <p>Search fictional doctors and departments to explore the booking demo.</p>
+
+      <form id="search-form" class="search-bar" role="search">
+        <label for="doctor-search" class="sr-only">Search doctors or departments</label>
+        <input id="doctor-search" class="input" type="search" placeholder="Try &quot;medicine&quot; or &quot;Dr. Sara&quot;" autocomplete="off">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </section>
+
+    <section class="section-block" aria-labelledby="dept-heading">
+      <h2 id="dept-heading">Browse by department</h2>
+      <div id="department-cards" class="dept-grid"></div>
+    </section>
+
+    <section class="section-block" aria-labelledby="doctor-heading">
+      <div class="section-head">
+        <h2 id="doctor-heading">Doctors</h2>
+        <p id="results-count" class="results-count" aria-live="polite"></p>
+      </div>
+      <div id="doctor-results" class="doctor-grid"></div>
+    </section>
+  </main>
+
+  <script src="../../js/mock-data.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/shared-state.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/patient.js"></script>
+</body>
 </html>

@@ -4,84 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Book Appointment | Healthcare+</title>
-
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="../../css/components.css">
   <link rel="stylesheet" href="../../css/patient.css">
-  <link rel="stylesheet" href="../../css/reception.css">
   <link rel="stylesheet" href="../../css/responsive.css">
 </head>
-
-<body data-shell="patient" data-page="booking">
+<body data-shell="patient" data-page="patient-booking">
   <header data-site-header></header>
 
   <main class="page-container">
-    <section class="card">
-      <p class="eyebrow">Patient portal</p>
-      <h1>Book an appointment</h1>
-
-      <p>
-        Select an active doctor, date and available slot.
-        Unavailable slots cannot be booked.
-      </p>
-
-      <form id="patient-booking-form">
-        <div class="walkin-grid">
-          <div class="field">
-            <label for="patient-name">Full name</label>
-            <input
-              id="patient-name"
-              name="patientName"
-              required
-              minlength="2"
-              autocomplete="name"
-            >
-          </div>
-
-          <div class="field">
-            <label for="patient-phone">10-digit phone number</label>
-            <input
-              id="patient-phone"
-              name="phone"
-              required
-              inputmode="numeric"
-              pattern="[0-9]{10}"
-              maxlength="10"
-              autocomplete="tel"
-            >
-          </div>
-
-          <div class="field">
-            <label for="patient-doctor">Doctor</label>
-            <select id="patient-doctor" name="doctorId" required></select>
-          </div>
-
-          <div class="field">
-            <label for="patient-date">Date</label>
-            <input id="patient-date" name="date" type="date" required>
-          </div>
-
-          <div class="field wide">
-            <label for="patient-time">Available time slot</label>
-            <select id="patient-time" name="time" required></select>
-          </div>
-
-          <div class="wide">
-            <p id="booking-message" class="notice" aria-live="polite"></p>
-
-            <button class="btn btn-primary" type="submit">
-              Confirm appointment
-            </button>
-          </div>
-        </div>
-      </form>
-    </section>
+    <a class="back-link" id="change-slot" href="home.html">&larr; Change time</a>
+    <h1>Book your appointment</h1>
+    <div id="booking-view"></div>
   </main>
 
-  <script src="../../js/mock-data.js" defer></script>
-  <script src="../../js/shared-state.js" defer></script>
-  <script src="../../js/utils.js" defer></script>
-  <script src="../../js/main.js" defer></script>
-  <script src="../../js/patient.js" defer></script>
+  <script src="../../js/mock-data.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/shared-state.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/patient.js"></script>
 </body>
 </html>

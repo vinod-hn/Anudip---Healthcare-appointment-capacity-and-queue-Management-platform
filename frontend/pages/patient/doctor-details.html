@@ -1,32 +1,26 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Doctor Details | Healthcare+</title>
-    <link rel="stylesheet" href="../../css/global.css" />
-    <link rel="stylesheet" href="../../css/components.css" />
-    <link rel="stylesheet" href="../../css/patient.css" />
-    <link rel="stylesheet" href="../../css/responsive.css" />
-  </head>
-  <body data-shell="patient" data-page="doctor-details">
-    <header data-site-header></header>
-    <main class="page-container">
-      <section class="card">
-        <p class="eyebrow">Patient portal</p>
-        <h1>Doctor details and availability</h1>
-        <p class="empty-state">
-          This screen is ready for the patient team. Use
-          <code>HealthcareState.booking</code> for the selected doctor, date and
-          time.
-        </p>
-        <a class="btn btn-primary" href="booking.html">Continue to booking</a>
-      </section>
-    </main>
-    <script src="../../js/mock-data.js" defer></script>
-    <script src="../../js/shared-state.js" defer></script>
-    <script src="../../js/utils.js" defer></script>
-    <script src="../../js/main.js" defer></script>
-    <script src="../../js/patient.js" defer></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Doctor Details | Healthcare+</title>
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/patient.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+<body data-shell="patient" data-page="patient-doctor-details">
+  <header data-site-header></header>
+
+  <main class="page-container">
+    <a class="back-link" href="home.html">&larr; Back to doctors</a>
+    <div id="doctor-view"></div>
+  </main>
+
+  <script src="../../js/mock-data.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/shared-state.js"></script>
+  <script src="../../js/main.js"></script>
+  <script src="../../js/patient.js"></script>
+</body>
 </html>

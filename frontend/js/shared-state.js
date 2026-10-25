@@ -36,9 +36,6 @@
           Array.isArray(parsed.slots) &&
           Array.isArray(parsed.appointments)
         ) {
-          parsed.appointments = parsed.appointments.filter(function (appointment) {
-            return appointment.patientName !== "Demo Patient";
-          });
           return parsed;
         }
       }
@@ -48,7 +45,7 @@
 
     return {
       doctors: copy(seed.doctors),
-      slots: [],
+      slots: copy(seed.slots || []),
       appointments: copy(seed.appointments || []),
       nextAppointment: 1001,
       nextToken: {}
@@ -57,7 +54,10 @@
 
   var data = load();
 
-  data.nextAppointment = Number(data.nextAppointment || 1002);
+  data.nextAppointment = getNextAppointmentNumber(
+    data.appointments,
+    data.nextAppointment
+  );
   data.nextToken = data.nextToken || {};
 
   // Normalize saved slot records.
@@ -80,6 +80,19 @@
       appointment.token = null;
     }
   });
+
+  function getNextAppointmentNumber(appointments, current) {
+    var next = Number(current) || 1001;
+
+    appointments.forEach(function (appointment) {
+      var match = /^APT(\d+)$/i.exec(String(appointment.id || ""));
+      if (match) {
+        next = Math.max(next, Number(match[1]) + 1);
+      }
+    });
+
+    return next;
+  }
 
   function tokenKey(appointment) {
     return appointment.doctorId + "|" + appointment.date;
@@ -760,9 +773,12 @@
 
       data = {
         doctors: copy(seed.doctors),
-        slots: [],
+        slots: copy(seed.slots || []),
         appointments: copy(seed.appointments || []),
-        nextAppointment: 1001,
+        nextAppointment: getNextAppointmentNumber(
+          seed.appointments || [],
+          1001
+        ),
         nextToken: {}
       };
 
