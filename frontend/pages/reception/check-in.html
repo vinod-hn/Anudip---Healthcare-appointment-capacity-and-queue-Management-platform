@@ -1,3 +1,135 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Check-in | Healthcare+</title><link rel="stylesheet" href="../../css/global.css"><link rel="stylesheet" href="../../css/components.css"><link rel="stylesheet" href="../../css/reception.css"><link rel="stylesheet" href="../../css/responsive.css"></head>
-<body data-shell="staff" data-page="check-in"><div data-staff-layout></div><main class="staff-content"><section class="card"><h1>Receptionist patient check-in</h1><p class="empty-state">Find an appointment and assign one token during check-in.</p></section></main><script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/reception.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patient Check-in | Healthcare+</title>
+
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/reception.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+
+<body data-shell="staff" data-page="check-in">
+  <div data-staff-layout></div>
+
+  <main class="staff-content">
+    <header class="reception-heading">
+      <div>
+        <p class="eyebrow">Reception workspace</p>
+        <h1>Patient Check-in</h1>
+        <p>Find a confirmed booking and check the patient in once they arrive.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="field search-row">
+        <label for="checkin-search">
+          Search appointment ID, patient name or phone
+        </label>
+
+        <input
+          id="checkin-search"
+          class="input"
+          data-checkin-search
+          placeholder="e.g. appointment ID or phone number"
+        >
+      </div>
+
+      <p class="notice" data-checkin-message aria-live="polite"></p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Appointment ID</th>
+              <th>Patient</th>
+              <th>Phone</th>
+              <th>Doctor</th>
+              <th>Date / Time</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody data-checkin-table></tbody>
+        </table>
+      </div>
+
+      <p class="empty-state" data-checkin-empty>
+        No appointments awaiting check-in match your search.
+      </p>
+
+      <section
+        class="card section-card"
+        data-checkin-details
+        hidden
+      ></section>
+    </section>
+
+    <section class="card section-card">
+      <h2>Register a walk-in patient</h2>
+
+      <p>
+        Use this for patients without an existing appointment.
+        The form checks slot capacity before registering.
+      </p>
+
+      <form data-walkin-form>
+        <div class="walkin-grid">
+          <div class="field">
+            <label>Patient full name</label>
+            <input
+              name="patientName"
+              required
+              minlength="2"
+              autocomplete="name"
+            >
+          </div>
+
+          <div class="field">
+            <label>Phone number</label>
+            <input
+              name="phone"
+              required
+              inputmode="numeric"
+              pattern="[0-9]{10}"
+              maxlength="10"
+              autocomplete="tel"
+              placeholder="10-digit number"
+            >
+          </div>
+
+          <div class="field">
+            <label>Doctor</label>
+            <select name="doctorId" required></select>
+          </div>
+
+          <div class="field">
+            <label>Date</label>
+            <input name="date" type="date" required>
+          </div>
+
+          <div class="field wide">
+            <label>Available time slot</label>
+            <select name="time" required></select>
+          </div>
+
+          <div class="wide">
+            <button class="btn btn-primary" type="submit">
+              Register walk-in appointment
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script src="../../js/mock-data.js" defer></script>
+  <script src="../../js/shared-state.js" defer></script>
+  <script src="../../js/utils.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/reception.js" defer></script>
+</body>
+</html>

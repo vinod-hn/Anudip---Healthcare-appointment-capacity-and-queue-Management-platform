@@ -24,7 +24,8 @@
 
   function nextOpenSlot(doctorId) {
     var open = HealthcareState.data.slots.filter(function (s) {
-      return s.doctorId === doctorId && !s.blocked && s.booked < s.capacity;
+      return s.doctorId === doctorId &&
+        HealthcareState.slotInfo(s.doctorId, s.date, s.time).status === "available";
     }).sort(function (a, b) { return (a.date + a.time).localeCompare(b.date + b.time); });
     return open[0] || null;
   }
@@ -128,9 +129,16 @@ window.PatientBooking = (function () {
     }) || null;
   }
   function slotStatus(s) {
-    if (s.blocked) return { key: "blocked", label: "Blocked", open: false };
-    if (s.booked >= s.capacity) return { key: "full", label: "Full", open: false };
-    return { key: "available", label: (s.capacity - s.booked) + " left", open: true };
+    var info = HealthcareState.slotInfo(s.doctorId, s.date, s.time);
+    return {
+      key: info.status,
+      label: info.status === "blocked"
+        ? "Blocked"
+        : info.status === "full"
+        ? "Full"
+        : info.available + " left",
+      open: info.status === "available"
+    };
   }
   function fee(d) {
     return Number(d.fee) > 0 ? "\u20B9" + Number(d.fee).toLocaleString("en-IN") : "Fee not listed";
@@ -287,23 +295,20 @@ window.PatientBooking = (function () {
       return;
     }
 
-    var data = HealthcareState.data, id;
-    do { id = HealthcareUtils.createId("APT"); }
-    while (data.appointments.some(function (a) { return a.id === id; }));
-
-    var appointment = {
-      id: id, patientName: name, phone: phone, doctorId: doc.id, department: doc.department,
-      date: date, time: time, status: "confirmed", token: null
-    };
     btn.disabled = true;
-    HealthcareState.update({
-      appointments: data.appointments.concat([appointment]),
-      slots: data.slots.map(function (s) {
-        return s.doctorId === doc.id && s.date === date && s.time === time
-          ? Object.assign({}, s, { booked: s.booked + 1 }) : s;
-      })
-    });
-    location.href = "confirmation.html?id=" + encodeURIComponent(id);
+    try {
+      var appointment = HealthcareState.bookAppointment({
+        patientName: name,
+        phone: phone,
+        doctorId: doc.id,
+        date: date,
+        time: time
+      });
+      location.href = "confirmation.html?id=" + encodeURIComponent(appointment.id);
+    } catch (error) {
+      btn.disabled = false;
+      formErr.textContent = error.message;
+    }
   });
 }());
 
