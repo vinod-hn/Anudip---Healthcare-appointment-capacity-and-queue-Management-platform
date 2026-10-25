@@ -1,3 +1,93 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Live Queue | Healthcare+</title><link rel="stylesheet" href="../../css/global.css"><link rel="stylesheet" href="../../css/components.css"><link rel="stylesheet" href="../../css/reception.css"><link rel="stylesheet" href="../../css/responsive.css"></head>
-<body data-shell="staff" data-page="queue"><div data-staff-layout></div><main class="staff-content"><section class="card"><h1>Live queue management</h1><p class="empty-state">Queue controls must follow the shared status transitions.</p></section></main><script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/reception.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Live Queue | Healthcare+</title>
+
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/reception.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+
+<body data-shell="staff" data-page="queue">
+  <div data-staff-layout></div>
+
+  <main class="staff-content">
+    <header class="reception-heading">
+      <div>
+        <p class="eyebrow">Reception workspace</p>
+        <h1>Live Queue Management</h1>
+
+        <p>
+          Queue order is based on appointment time, then check-in time.
+          Token numbers are identifiers, not priority.
+        </p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="field">
+          <label for="queue-doctor">Doctor</label>
+          <select id="queue-doctor" data-queue-doctor></select>
+        </div>
+
+        <div class="field">
+          <label for="queue-date">Date</label>
+          <input id="queue-date" type="date" data-queue-date>
+        </div>
+      </div>
+
+      <p class="notice" data-queue-message aria-live="polite"></p>
+
+      <div class="queue-summary">
+        <div class="kpi-card">
+          <span>Now serving / in consultation</span>
+          <strong data-now-serving>—</strong>
+          <p data-now-token>—</p>
+        </div>
+
+        <div class="kpi-card">
+          <span>Next waiting patient</span>
+          <strong data-next-patient>—</strong>
+          <p data-next-token>—</p>
+        </div>
+
+        <div class="kpi-card">
+          <span>Patients waiting</span>
+          <strong data-waiting-count>0</strong>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Patient</th>
+              <th>Appointment ID</th>
+              <th>Appointment time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody data-queue-table></tbody>
+        </table>
+      </div>
+
+      <p class="empty-state" data-queue-empty>
+        No checked-in patients are waiting for this doctor on this date.
+      </p>
+    </section>
+  </main>
+
+  <script src="../../js/mock-data.js" defer></script>
+  <script src="../../js/shared-state.js" defer></script>
+  <script src="../../js/utils.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/reception.js" defer></script>
+</body>
+</html>

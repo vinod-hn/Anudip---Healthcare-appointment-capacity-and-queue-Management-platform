@@ -1,3 +1,81 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Schedules | Healthcare+</title><link rel="stylesheet" href="../../css/global.css"><link rel="stylesheet" href="../../css/components.css"><link rel="stylesheet" href="../../css/reception.css"><link rel="stylesheet" href="../../css/responsive.css"></head>
-<body data-shell="staff" data-page="schedules"><div data-staff-layout></div><main class="staff-content"><section class="card"><h1>Schedule and capacity</h1><p class="empty-state">Slot capacity, booked counts and block/unblock actions belong in this screen.</p></section></main><script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/reception.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule & Capacity | Healthcare+</title>
+
+  <link rel="stylesheet" href="../../css/global.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/reception.css">
+  <link rel="stylesheet" href="../../css/responsive.css">
+</head>
+
+<body data-shell="staff" data-page="schedules">
+  <div data-staff-layout></div>
+
+  <main class="staff-content">
+    <header class="reception-heading">
+      <div>
+        <p class="eyebrow">Reception workspace</p>
+        <h1>Schedule & Capacity</h1>
+        <p>View consultation slots and manage availability for each doctor.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="field">
+          <label for="schedule-doctor">Doctor</label>
+          <select id="schedule-doctor" data-schedule-doctor></select>
+        </div>
+
+        <div class="field">
+          <label for="schedule-date">Appointment date</label>
+          <input id="schedule-date" type="date" data-schedule-date>
+        </div>
+      </div>
+
+      <p class="notice" data-schedule-message aria-live="polite"></p>
+
+      <h2 data-schedule-doctor-name></h2>
+
+      <p>
+        Schedule for <strong data-schedule-date-label></strong>.
+        Demo hours: Monday–Saturday, 9 AM–1 PM and 2 PM–5 PM.
+      </p>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <span>Total slot capacity</span>
+          <strong data-capacity-total>0</strong>
+        </div>
+
+        <div class="kpi-card">
+          <span>Active bookings</span>
+          <strong data-capacity-booked>0</strong>
+        </div>
+
+        <div class="kpi-card">
+          <span>Remaining capacity</span>
+          <strong data-capacity-available>0</strong>
+        </div>
+      </div>
+
+      <div class="legend">
+        <span>Available</span>
+        <span class="legend-full">Fully booked</span>
+        <span class="legend-blocked">Blocked</span>
+      </div>
+
+      <div class="slot-grid" data-slot-grid></div>
+    </section>
+  </main>
+
+  <script src="../../js/mock-data.js" defer></script>
+  <script src="../../js/shared-state.js" defer></script>
+  <script src="../../js/utils.js" defer></script>
+  <script src="../../js/main.js" defer></script>
+  <script src="../../js/reception.js" defer></script>
+</body>
+</html>

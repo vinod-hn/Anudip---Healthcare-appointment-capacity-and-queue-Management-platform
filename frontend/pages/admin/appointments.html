@@ -1,15 +1,108 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Appointments | Healthcare+</title><link rel="stylesheet" href="../../css/global.css"><link rel="stylesheet" href="../../css/components.css"><link rel="stylesheet" href="../../css/admin.css"><link rel="stylesheet" href="../../css/responsive.css"></head>
-<body data-shell="staff" data-page="appointments">
-  <div data-staff-layout></div>
-  <main class="staff-content">
-    <div class="page-heading"><div><p class="eyebrow">Staff workspace</p><h1>Appointment management</h1><p>Search appointments by patient or appointment ID.</p></div></div>
-    <section class="card">
-      <div class="toolbar"><label>Search<input class="input" data-appointment-search type="search" placeholder="Patient or ID"></label><label>Date<input class="input" data-appointment-date type="date"></label><label>Status<select class="input" data-appointment-status><option value="">All statuses</option></select></label></div>
-      <div class="table-scroll"><table><thead><tr><th>Appointment</th><th>Patient</th><th>Doctor</th><th>Date / time</th><th>Status</th><th>Actions</th></tr></thead><tbody data-appointment-table></tbody></table></div>
-      <p class="empty-state" data-appointment-empty hidden>No appointments match the selected filters.</p>
-    </section>
-    <dialog data-appointment-dialog><form method="dialog" class="dialog-card"><button class="dialog-close" value="cancel" aria-label="Close">×</button><h2>Appointment details</h2><div data-appointment-details></div><div class="reschedule-form" data-reschedule-form hidden><label>New date<input class="input" data-reschedule-date type="date" required></label><label>New time<input class="input" data-reschedule-time type="time" required></label><button class="btn btn-primary" data-save-reschedule type="button">Save new time</button></div><div class="dialog-actions"><button class="btn btn-secondary" data-reschedule-appointment type="button">Reschedule</button><button class="btn btn-danger" data-cancel-appointment type="button">Cancel appointment</button><button class="btn btn-secondary" value="cancel">Close</button></div></form></dialog>
-  </main>
-  <script src="../../js/mock-data.js" defer></script><script src="../../js/shared-state.js" defer></script><script src="../../js/utils.js" defer></script><script src="../../js/main.js" defer></script><script src="../../js/admin.js" defer></script>
-</body></html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Appointments | Healthcare+</title>
+    <link rel="stylesheet" href="../../css/global.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+    <link rel="stylesheet" href="../../css/responsive.css" />
+  </head>
+  <body data-shell="staff" data-page="appointments">
+    <div data-staff-layout></div>
+    <main class="staff-content">
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">Staff workspace</p>
+          <h1>Appointment management</h1>
+          <p>Search appointments by patient or appointment ID.</p>
+        </div>
+      </div>
+      <section class="card">
+        <div class="toolbar">
+          <label
+            >Search<input
+              class="input"
+              data-appointment-search
+              type="search"
+              placeholder="Patient or ID" /></label
+          ><label
+            >Date<input
+              class="input"
+              data-appointment-date
+              type="date" /></label
+          ><label
+            >Status<select class="input" data-appointment-status>
+              <option value="">All statuses</option>
+            </select></label
+          >
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Appointment</th>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Date / time</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody data-appointment-table></tbody>
+          </table>
+        </div>
+        <p class="empty-state" data-appointment-empty hidden>
+          No appointments match the selected filters.
+        </p>
+      </section>
+      <dialog data-appointment-dialog>
+        <form method="dialog" class="dialog-card">
+          <button class="dialog-close" value="cancel" aria-label="Close">
+            ×
+          </button>
+          <h2>Appointment details</h2>
+          <div data-appointment-details></div>
+          <div class="reschedule-form" data-reschedule-form hidden>
+            <label
+              >New date<input
+                class="input"
+                data-reschedule-date
+                type="date"
+                required /></label
+            ><label
+              >New time<input
+                class="input"
+                data-reschedule-time
+                type="time"
+                required /></label
+            ><button class="btn btn-primary" data-save-reschedule type="button">
+              Save new time
+            </button>
+          </div>
+          <div class="dialog-actions">
+            <button
+              class="btn btn-secondary"
+              data-reschedule-appointment
+              type="button"
+            >
+              Reschedule</button
+            ><button
+              class="btn btn-danger"
+              data-cancel-appointment
+              type="button"
+            >
+              Cancel appointment</button
+            ><button class="btn btn-secondary" value="cancel">Close</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <script src="../../js/mock-data.js" defer></script>
+    <script src="../../js/shared-state.js" defer></script>
+    <script src="../../js/utils.js" defer></script>
+    <script src="../../js/main.js" defer></script>
+    <script src="../../js/admin.js" defer></script>
+  </body>
+</html>
