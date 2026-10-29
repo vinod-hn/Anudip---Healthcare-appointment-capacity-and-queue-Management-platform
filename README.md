@@ -8,13 +8,16 @@ Open `frontend/index.html` with VS Code Live Server, or open it directly in a br
 
 ## Publish on GitHub Pages
 
-The `main` branch automatically deploys the static site from `frontend/` using
-`.github/workflows/deploy-pages.yml`. To enable it for the repository, open
-**Settings → Pages**, set **Source** to **GitHub Actions**, and push to `main`
-or run the workflow manually from the **Actions** tab.
+The `main` and `feature/admin-ui` branches deploy the static site from
+`frontend/` using `.github/workflows/deploy-pages.yml`. In the repository
+settings, set **Pages → Source** to **GitHub Actions** once. After the first
+successful workflow run, the site is available at:
 
 The published site is available at:
 `https://vinod-hn.github.io/Anudip---Healthcare-appointment-capacity-and-queue-Management-platform/`
+
+The direct application entry point is also available at:
+`https://vinod-hn.github.io/Anudip---Healthcare-appointment-capacity-and-queue-Management-platform/frontend/index.html`
 
 ## Structure
 
@@ -40,4 +43,9 @@ Vinod's implementation is on the `feature/admin-ui` branch and covers:
 - Doctor search, add/edit form, and active/inactive status changes.
 - `localStorage` persistence so the demo workflow can move between pages in the same browser.
 
-See [`docs/vinod-work.md`](docs/vinod-work.md) for the step-by-step implementation record and validation checklist.
+See [`docs/README.md`](docs/README.md) for the complete documentation index.
+
+See [`docs/vinod-work.md`](docs/vinod-work.md) for the step-by-step
+implementation record and validation checklist.
+
+The full frontend audit, fixes, executed checks, and remaining limitations are recorded in [`docs/quality-audit.md`](docs/quality-audit.md).

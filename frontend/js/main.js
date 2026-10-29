@@ -1,4 +1,14 @@
 (function () {
+  var main = document.querySelector("main");
+  if (main) {
+    main.id = "main-content";
+    main.tabIndex = -1;
+    var skip = document.createElement("a");
+    skip.className = "skip-link";
+    skip.href = "#main-content";
+    skip.textContent = "Skip to main content";
+    document.body.insertBefore(skip, document.body.firstChild);
+  }
   var page = document.body.dataset.page || "";
   var root = document.querySelector("[data-site-header]");
   if (root) {
@@ -7,13 +17,17 @@
   }
   var layout = document.querySelector("[data-staff-layout]");
   if (layout) {
+    var receptionPage =
+      page === "schedules" || page === "check-in" || page === "queue";
+    var adminPath = receptionPage ? "../admin/" : "";
+    var receptionPath = receptionPage ? "" : "../reception/";
     var links = [
-      ["dashboard", "Dashboard", "dashboard.html"],
-      ["appointments", "Appointments", "appointments.html"],
-      ["doctors", "Doctors", "doctors.html"],
-      ["schedules", "Schedules", "../reception/schedules.html"],
-      ["check-in", "Check-in", "../reception/check-in.html"],
-      ["queue", "Live queue", "../reception/queue.html"],
+      ["dashboard", "Dashboard", adminPath + "dashboard.html"],
+      ["appointments", "Appointments", adminPath + "appointments.html"],
+      ["doctors", "Doctors", adminPath + "doctors.html"],
+      ["schedules", "Schedules", receptionPath + "schedules.html"],
+      ["check-in", "Check-in", receptionPath + "check-in.html"],
+      ["queue", "Live queue", receptionPath + "queue.html"],
     ];
     var nav = links
       .map(function (item) {

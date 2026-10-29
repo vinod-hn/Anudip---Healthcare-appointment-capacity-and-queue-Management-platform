@@ -1,7 +1,7 @@
 :root {
   --primary: #2563eb;
-  --teal: #0d9488;
-  --success: #16a34a;
+  --teal: #0f766e;
+  --success: #166534;
   --navy: #123047;
   --background: #f3f8fa;
   --surface: #ffffff;
@@ -42,7 +42,7 @@ button:disabled {
   opacity: 0.55;
 }
 :focus-visible {
-  outline: 3px solid #93c5fd;
+  outline: 3px solid #1d4ed8;
   outline-offset: 2px;
 }
 h1,
@@ -84,6 +84,18 @@ h1 {
 .empty-state {
   color: var(--muted);
   padding: 20px 0;
+}
+.skip-link {
+  background: var(--navy);
+  color: #fff;
+  left: 8px;
+  padding: 8px 12px;
+  position: absolute;
+  top: -50px;
+  z-index: 10;
+}
+.skip-link:focus {
+  top: 8px;
 }
 .input {
   border: 1px solid var(--border);
