@@ -12,8 +12,28 @@
   var page = document.body.dataset.page || "";
   var root = document.querySelector("[data-site-header]");
   if (root) {
+    var patientLinks = [
+      ["patient-home", "Find a doctor", "home.html"],
+      ["patient-confirmation", "My booking", "confirmation.html"],
+      ["staff", "Staff demo", "../admin/dashboard.html"],
+    ];
+    var patientNav = patientLinks
+      .map(function (item) {
+        return (
+          '<a href="' +
+          item[2] +
+          '"' +
+          (page === item[0] ? ' aria-current="page"' : "") +
+          ">" +
+          item[1] +
+          "</a>"
+        );
+      })
+      .join("");
     root.outerHTML =
-      '<header class="patient-navbar"><a class="brand" href="../../index.html">Healthcare<span>+</span></a><nav aria-label="Patient navigation"><a href="home.html">Find a doctor</a><a href="confirmation.html">My booking</a><a href="../admin/dashboard.html">Staff demo</a></nav></header>';
+      '<header class="patient-navbar"><a class="brand" href="../../index.html">Healthcare<span>+</span></a><nav aria-label="Patient navigation">' +
+      patientNav +
+      "</nav></header>";
   }
   var layout = document.querySelector("[data-staff-layout]");
   if (layout) {
