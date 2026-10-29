@@ -16,6 +16,9 @@ successful workflow run, the site is available at:
 The published site is available at:
 `https://vinod-hn.github.io/Anudip---Healthcare-appointment-capacity-and-queue-Management-platform/`
 
+The direct application entry point is also available at:
+`https://vinod-hn.github.io/Anudip---Healthcare-appointment-capacity-and-queue-Management-platform/frontend/index.html`
+
 ## Structure
 
 - `frontend/pages/patient/`: the four patient screens
