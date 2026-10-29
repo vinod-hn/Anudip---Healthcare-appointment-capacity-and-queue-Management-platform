@@ -17,13 +17,17 @@
   }
   var layout = document.querySelector("[data-staff-layout]");
   if (layout) {
+    var receptionPage =
+      page === "schedules" || page === "check-in" || page === "queue";
+    var adminPath = receptionPage ? "../admin/" : "";
+    var receptionPath = receptionPage ? "" : "../reception/";
     var links = [
-      ["dashboard", "Dashboard", "dashboard.html"],
-      ["appointments", "Appointments", "appointments.html"],
-      ["doctors", "Doctors", "doctors.html"],
-      ["schedules", "Schedules", "../reception/schedules.html"],
-      ["check-in", "Check-in", "../reception/check-in.html"],
-      ["queue", "Live queue", "../reception/queue.html"],
+      ["dashboard", "Dashboard", adminPath + "dashboard.html"],
+      ["appointments", "Appointments", adminPath + "appointments.html"],
+      ["doctors", "Doctors", adminPath + "doctors.html"],
+      ["schedules", "Schedules", receptionPath + "schedules.html"],
+      ["check-in", "Check-in", receptionPath + "check-in.html"],
+      ["queue", "Live queue", receptionPath + "queue.html"],
     ];
     var nav = links
       .map(function (item) {

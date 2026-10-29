@@ -98,6 +98,8 @@
   background: rgba(255, 255, 255, 0.14);
 }
 .staff-content {
+  min-height: 100vh;
   margin-left: 240px;
   padding: 32px;
+  width: calc(100% - 240px);
 }
