@@ -51,16 +51,26 @@
   align-items: center;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(18, 48, 71, 0.04);
   display: flex;
   justify-content: space-between;
-  padding: 16px 5%;
+  padding: 18px max(24px, calc((100% - 1200px) / 2));
 }
 .patient-navbar nav {
   display: flex;
   gap: 20px;
 }
 .patient-navbar nav a {
+  border-bottom: 2px solid transparent;
+  color: var(--navy);
+  font-weight: 600;
+  padding: 7px 0;
   text-decoration: none;
+}
+.patient-navbar nav a:hover,
+.patient-navbar nav a[aria-current="page"] {
+  border-bottom-color: var(--teal);
+  color: var(--teal);
 }
 .brand {
   color: var(--navy);
