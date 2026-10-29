@@ -41,3 +41,5 @@ Vinod's implementation is on the `feature/admin-ui` branch and covers:
 - `localStorage` persistence so the demo workflow can move between pages in the same browser.
 
 See [`docs/vinod-work.md`](docs/vinod-work.md) for the step-by-step implementation record and validation checklist.
+
+The full frontend audit, fixes, executed checks, and remaining limitations are recorded in [`docs/quality-audit.md`](docs/quality-audit.md).

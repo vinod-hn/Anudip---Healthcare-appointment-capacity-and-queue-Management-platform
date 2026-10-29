@@ -53,9 +53,10 @@
     state.data.slots.forEach(function (slot) {
       var doctor = utils.getDoctor(slot.doctorId);
       var department = doctor ? doctor.department : "Unassigned";
+      var info = state.slotInfo(slot.doctorId, slot.date, slot.time);
       if (!capacity[department]) capacity[department] = { booked: 0, total: 0 };
-      capacity[department].booked += slot.booked;
-      capacity[department].total += slot.capacity;
+      capacity[department].booked += info.booked;
+      capacity[department].total += info.capacity;
     });
     document.querySelector("[data-capacity-summary]").innerHTML = Object.keys(
       capacity,
@@ -71,9 +72,11 @@
           item.booked +
           " / " +
           item.total +
-          '</strong></div><div class="capacity-bar" aria-label="' +
+          '</strong></div><div class="capacity-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' +
           percentage +
-          '% booked"><span style="width:' +
+          '" aria-label="' +
+          utils.escapeHtml(department) +
+          ' capacity booked"><span style="width:' +
           percentage +
           '%"></span></div></div>'
         );
@@ -225,9 +228,13 @@
         var time = document.querySelector("[data-reschedule-time]").value;
         if (!date || !time) return;
         var id = event.currentTarget.dataset.appointmentId;
-        state.updateAppointment(id, { date: date, time: time });
-        document.querySelector("[data-appointment-dialog]").close();
-        renderAppointments();
+        try {
+          state.rescheduleAppointment(id, date, time);
+          document.querySelector("[data-appointment-dialog]").close();
+          renderAppointments();
+        } catch (error) {
+          window.alert(error.message);
+        }
       });
   }
   function renderDoctors() {
@@ -251,7 +258,10 @@
           doctor.consultationMinutes +
           " min</td><td>₹" +
           doctor.fee +
-          '</td><td><button class="table-action" data-toggle-doctor="' +
+          '</td><td><button class="table-action" aria-label="' +
+          (doctor.status === "active" ? "Deactivate " : "Activate ") +
+          utils.escapeHtml(doctor.name) +
+          '" data-toggle-doctor="' +
           doctor.id +
           '" type="button">' +
           utils.escapeHtml(utils.statusLabel(doctor.status)) +

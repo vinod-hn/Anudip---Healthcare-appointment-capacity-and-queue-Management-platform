@@ -133,6 +133,10 @@
     data.nextToken = data.nextToken || {};
 
     data.appointments.forEach(function (appointment) {
+      if (appointment.status === "confirmed") {
+        appointment.token = null;
+      }
+
       if (appointment.token) {
         var key = tokenKey(appointment);
         data.nextToken[key] = Math.max(
@@ -142,18 +146,6 @@
       }
     });
 
-    data.appointments
-      .filter(function (appointment) {
-        return !appointment.token;
-      })
-      .sort(function (a, b) {
-        return (
-          tokenKey(a).localeCompare(tokenKey(b)) ||
-          String(a.time || "").localeCompare(String(b.time || "")) ||
-          String(a.id || "").localeCompare(String(b.id || ""))
-        );
-      })
-      .forEach(assignToken);
   }
 
   function save() {
@@ -178,7 +170,11 @@
       return false;
     }
 
-    return !isNaN(new Date(date + "T00:00:00").getTime());
+    var parts = date.split("-").map(Number);
+    var parsed = new Date(parts[0], parts[1] - 1, parts[2]);
+    return parsed.getFullYear() === parts[0] &&
+      parsed.getMonth() === parts[1] - 1 &&
+      parsed.getDate() === parts[2];
   }
 
   function getDoctor(id) {
@@ -463,7 +459,6 @@
       checkedInAt: null
     };
 
-    assignToken(appointment);
     data.appointments.push(appointment);
 
     save();
@@ -554,7 +549,6 @@
       checkedInAt: null
     };
 
-    assignToken(appointment);
     data.appointments.push(appointment);
 
     save();
@@ -591,6 +585,55 @@
    * 3. The earliest scheduled waiting patient must be called first.
    * 4. A consultation must be completed before another starts.
    */
+
+  function rescheduleAppointment(id, date, time) {
+      var appointment = data.appointments.find(function (item) {
+        return item.id === id;
+      });
+
+      if (!appointment) {
+        throw new Error("Appointment not found.");
+      }
+
+      if (["cancelled", "completed", "skipped"].indexOf(appointment.status) !== -1) {
+        throw new Error("This appointment cannot be rescheduled.");
+      }
+
+      var doctor = getDoctor(appointment.doctorId);
+      var today = new Date().toISOString().slice(0, 10);
+      if (!doctor || !dateValid(date) || date < today) {
+        throw new Error("Choose a valid future date.");
+      }
+
+      var slots = ensureSlots(appointment.doctorId, date);
+      var slot = slots.find(function (item) { return item.time === time; });
+      if (!slot) {
+        throw new Error("Choose a time within the doctor's working schedule.");
+      }
+
+      var info = slotInfo(appointment.doctorId, date, time);
+      var currentSlot = appointment.date === date && appointment.time === time;
+      var available = info.capacity - info.booked + (currentSlot ? 1 : 0);
+      if (info.blocked || available < 1) {
+        throw new Error("That slot is blocked or fully booked.");
+      }
+
+      var duplicate = data.appointments.find(function (item) {
+        return item.id !== id &&
+          item.phone === appointment.phone &&
+          item.doctorId === appointment.doctorId &&
+          item.date === date &&
+          item.status !== "cancelled";
+      });
+      if (duplicate) {
+        throw new Error("This patient already has an appointment with this doctor on that date.");
+      }
+
+      appointment.date = date;
+      appointment.time = time;
+      save();
+      return copy(appointment);
+  }
 
   function changeStatus(id, next) {
     var appointment = data.appointments.find(function (item) {
@@ -767,6 +810,7 @@
     registerWalkIn: registerWalkIn,
     setBlocked: setBlocked,
     changeStatus: changeStatus,
+    rescheduleAppointment: rescheduleAppointment,
 
     reset: function () {
       localStorage.removeItem(KEY);

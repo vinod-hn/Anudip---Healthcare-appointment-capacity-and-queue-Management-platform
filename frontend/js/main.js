@@ -1,4 +1,14 @@
 (function () {
+  var main = document.querySelector("main");
+  if (main) {
+    main.id = "main-content";
+    main.tabIndex = -1;
+    var skip = document.createElement("a");
+    skip.className = "skip-link";
+    skip.href = "#main-content";
+    skip.textContent = "Skip to main content";
+    document.body.insertBefore(skip, document.body.firstChild);
+  }
   var page = document.body.dataset.page || "";
   var root = document.querySelector("[data-site-header]");
   if (root) {

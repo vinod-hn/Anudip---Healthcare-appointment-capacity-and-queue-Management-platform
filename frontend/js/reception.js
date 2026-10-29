@@ -157,7 +157,8 @@
 
           '<button class="btn ' +
           (slot.blocked ? "btn-secondary" : "btn-primary") +
-          '" data-slot="' + safe(slot.time) + '"' +
+          '" aria-label="' + (slot.blocked ? "Unblock " : "Block ") +
+          safe(slot.time) + ' slot" data-slot="' + safe(slot.time) + '"' +
           (disabled ? " disabled" : "") + ">" +
           (slot.blocked ? "Unblock slot" : "Block slot") +
           "</button></article>";
@@ -244,6 +245,7 @@
         safe(a.id) + '"' +
         (a.status !== "confirmed" ? " disabled" : "") +
         ">Check in patient</button>";
+      details.focus();
     }
 
     function render() {
@@ -537,26 +539,26 @@
         if (a.status === "waiting") {
           actions =
             '<button class="btn btn-primary" data-action="called" data-id="' +
-            safe(a.id) + '">Call patient</button> ' +
+            safe(a.id) + '" aria-label="Call ' + safe(a.patientName) + ', token ' + safe(token) + '">Call patient</button> ' +
 
             '<button class="btn btn-secondary" data-action="skipped" data-id="' +
-            safe(a.id) + '">Skip</button>';
+            safe(a.id) + '" aria-label="Skip ' + safe(a.patientName) + ', token ' + safe(token) + '">Skip</button>';
 
         } else if (a.status === "called") {
           actions =
             '<button class="btn btn-primary" data-action="in_consultation" data-id="' +
-            safe(a.id) + '">Start consultation</button> ' +
+            safe(a.id) + '" aria-label="Start consultation for ' + safe(a.patientName) + '">Start consultation</button> ' +
 
             '<button class="btn btn-secondary" data-action="waiting" data-id="' +
-            safe(a.id) + '">Return to waiting</button> ' +
+            safe(a.id) + '" aria-label="Return ' + safe(a.patientName) + ' to waiting">Return to waiting</button> ' +
 
             '<button class="btn btn-secondary" data-action="skipped" data-id="' +
-            safe(a.id) + '">Skip</button>';
+            safe(a.id) + '" aria-label="Skip ' + safe(a.patientName) + '">Skip</button>';
 
         } else if (a.status === "in_consultation") {
           actions =
             '<button class="btn btn-primary" data-action="completed" data-id="' +
-            safe(a.id) + '">Complete consultation</button>';
+            safe(a.id) + '" aria-label="Complete consultation for ' + safe(a.patientName) + '">Complete consultation</button>';
 
         } else {
           actions = "<span>Check in first</span>";

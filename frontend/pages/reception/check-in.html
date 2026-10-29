@@ -43,13 +43,13 @@
         <table>
           <thead>
             <tr>
-              <th>Appointment ID</th>
-              <th>Patient</th>
-              <th>Phone</th>
-              <th>Doctor</th>
-              <th>Date / Time</th>
-              <th>Status</th>
-              <th>Action</th>
+              <th scope="col">Appointment ID</th>
+              <th scope="col">Patient</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Doctor</th>
+              <th scope="col">Date / Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
 
@@ -64,6 +64,8 @@
       <section
         class="card section-card"
         data-checkin-details
+        tabindex="-1"
+        aria-live="polite"
         hidden
       ></section>
     </section>
@@ -79,8 +81,9 @@
       <form data-walkin-form>
         <div class="walkin-grid">
           <div class="field">
-            <label>Patient full name</label>
+            <label for="walkin-patient-name">Patient full name</label>
             <input
+              id="walkin-patient-name"
               name="patientName"
               required
               minlength="2"
@@ -89,8 +92,9 @@
           </div>
 
           <div class="field">
-            <label>Phone number</label>
+            <label for="walkin-phone">Phone number</label>
             <input
+              id="walkin-phone"
               name="phone"
               required
               inputmode="numeric"
@@ -102,18 +106,18 @@
           </div>
 
           <div class="field">
-            <label>Doctor</label>
-            <select name="doctorId" required></select>
+            <label for="walkin-doctor">Doctor</label>
+            <select id="walkin-doctor" name="doctorId" required></select>
           </div>
 
           <div class="field">
-            <label>Date</label>
-            <input name="date" type="date" required>
+            <label for="walkin-date">Date</label>
+            <input id="walkin-date" name="date" type="date" required>
           </div>
 
           <div class="field wide">
-            <label>Available time slot</label>
-            <select name="time" required></select>
+            <label for="walkin-time">Available time slot</label>
+            <select id="walkin-time" name="time" required></select>
           </div>
 
           <div class="wide">

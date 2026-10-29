@@ -11,6 +11,16 @@
 
   var selectedDepartment = "";
   var esc = HealthcareUtils.escapeHtml;
+  function isoDate(date) {
+    return date.toISOString().slice(0, 10);
+  }
+  function ensureFutureSlots(doctorId) {
+    var date = new Date();
+    for (var offset = 0; offset < 14; offset += 1) {
+      HealthcareState.ensureSlots(doctorId, isoDate(date));
+      date.setDate(date.getDate() + 1);
+    }
+  }
 
   function activeDoctors() {
     return HealthcareState.data.doctors.filter(function (d) { return d.status === "active"; });
@@ -23,8 +33,11 @@
   }
 
   function nextOpenSlot(doctorId) {
+    ensureFutureSlots(doctorId);
+    var today = isoDate(new Date());
     var open = HealthcareState.data.slots.filter(function (s) {
       return s.doctorId === doctorId &&
+        s.date >= today &&
         HealthcareState.slotInfo(s.doctorId, s.date, s.time).status === "available";
     }).sort(function (a, b) { return (a.date + a.time).localeCompare(b.date + b.time); });
     return open[0] || null;
@@ -169,7 +182,15 @@ window.PatientBooking = (function () {
   var doc = P.doctor(params.get("doctor"));
   if (!doc) { P.notice(view, "Doctor not found", "This doctor is not available. Go back and pick another."); return; }
 
-  var slots = P.slotsFor(doc.id);
+  var futureDate = new Date();
+  for (var day = 0; day < 14; day += 1) {
+    HealthcareState.ensureSlots(doc.id, futureDate.toISOString().slice(0, 10));
+    futureDate.setDate(futureDate.getDate() + 1);
+  }
+  var today = new Date().toISOString().slice(0, 10);
+  var slots = P.slotsFor(doc.id).filter(function (slot) {
+    return slot.date >= today;
+  });
   var dates = slots.reduce(function (list, s) { if (list.indexOf(s.date) === -1) list.push(s.date); return list; }, []);
   var date = dates.indexOf(params.get("date")) !== -1 ? params.get("date") : (dates[0] || "");
   var time = "", focusKey = "";
@@ -241,6 +262,7 @@ window.PatientBooking = (function () {
   var params = new URLSearchParams(location.search);
   var doc = P.doctor(params.get("doctor"));
   var date = params.get("date") || "", time = params.get("time") || "";
+  if (doc && date) HealthcareState.ensureSlots(doc.id, date);
   var slot = doc ? P.findSlot(doc.id, date, time) : null;
 
   var back = document.querySelector("#change-slot");

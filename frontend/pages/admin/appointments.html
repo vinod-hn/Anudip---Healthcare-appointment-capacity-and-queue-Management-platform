@@ -42,12 +42,12 @@
           <table>
             <thead>
               <tr>
-                <th>Appointment</th>
-                <th>Patient</th>
-                <th>Doctor</th>
-                <th>Date / time</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th scope="col">Appointment</th>
+                <th scope="col">Patient</th>
+                <th scope="col">Doctor</th>
+                <th scope="col">Date / time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody data-appointment-table></tbody>
@@ -57,12 +57,12 @@
           No appointments match the selected filters.
         </p>
       </section>
-      <dialog data-appointment-dialog>
+      <dialog data-appointment-dialog aria-labelledby="appointment-dialog-title">
         <form method="dialog" class="dialog-card">
           <button class="dialog-close" value="cancel" aria-label="Close">
             ×
           </button>
-          <h2>Appointment details</h2>
+          <h2 id="appointment-dialog-title">Appointment details</h2>
           <div data-appointment-details></div>
           <div class="reschedule-form" data-reschedule-form hidden>
             <label
